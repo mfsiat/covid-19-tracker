@@ -1,7 +1,7 @@
 // class based component
 import React from "react";
 
-class app extends Rreact.Component {
+class app extends React.Component {
   render() {
     return (
       <div>
