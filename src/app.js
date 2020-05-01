@@ -10,6 +10,7 @@ class app extends React.Component {
   // setting a state to display the data on the cards component
   state = {
     data: {},
+    country: '',
   }
 
 
@@ -19,16 +20,24 @@ class app extends React.Component {
     this.setState({ data: fetchedData });
   }
 
+  // for country picker
+  handleCountryChange = async (country) => {
+    const fetchedData = await fetchData(country); 
+    // fetch the data 
+    // set the state 
+    this.setState({ data: fetchedData, country: country });
+  }
+
   render() {
     // destructuring the this.data 
-    const { data } = this.state;
+    const { data, country } = this.state;
 
     return (
       <div className={styles.container}>
         <img className={styles.image} src={image} alt="COVID-19" />
         <Cards data={data}/>
-        <CountryPicker />
-        <Chart />
+        <CountryPicker handleCountryChange={this.handleCountryChange} />
+        <Chart data={data} country={country} />
       </div>
     );
   }
